@@ -26,6 +26,9 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  &:hover {
+    scale: 1.2;
+  }
 }
 
 .title a {
