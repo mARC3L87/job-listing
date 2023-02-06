@@ -9,8 +9,9 @@ const Header = () => {
         src={backgroundHeader}
         alt='background-image'
         width='100%'
-        height='100%'
-        layout='responsive'
+        layout='fill'
+        objectFit='cover'
+        priority
       />
     </div>
   );
