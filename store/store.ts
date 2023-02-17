@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import changeNameReducer from '../features/changeNameSlice';
+import jobDataReducer from '../features/jobDataSlice';
 
 export const store = configureStore({
   reducer: {
-    changeName: changeNameReducer,
+    jobData: jobDataReducer,
   },
 });
 
