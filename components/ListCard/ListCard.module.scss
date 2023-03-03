@@ -27,16 +27,14 @@
     gap: 5px;
     align-items: center;
     .new {
-      color: white;
       font-weight: 400;
       background-color: hsl(180, 91%, 31%);
     }
     .featured {
-      // padding: 2px;
-      color: white;
       background-color: black;
     }
-    & p:nth-child(n + 2) {
+    p:nth-child(n + 2) {
+      color: white;
       padding: 5px 6px 3px;
       border-radius: 10px;
       font-size: 12px;
@@ -86,10 +84,41 @@
     font-size: 15px;
     margin: 0 10px;
     background-color: hsl(180, 31%, 95%);
-    width: 100%;
     padding: 5px;
     border-radius: 5px;
     color: hsl(180, 8%, 52%);
     font-weight: 700;
+  }
+}
+
+@media screen and (max-width: 966px) {
+  .wrapper {
+    flex-wrap: wrap;
+    height: 100%;
+    flex-direction: column;
+    margin: 35px 0;
+    .col1 {
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 10px;
+      border-bottom: 1px solid hsl(180, 8%, 52%);
+      .logoWrapper {
+        margin: -35px 5px;
+        width: 50px;
+      }
+      .jobCompanyDetails {
+        margin-top: 35px;
+      }
+      .jobList {
+        margin-bottom: 10px;
+      }
+    }
+    .col2 {
+      flex-wrap: wrap;
+      margin: 5px 10px;
+      p {
+        margin: 0 8px 8px 0;
+      }
+    }
   }
 }
