@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { jobData } from '../../features/jobDataSlice';
+import jobDataSlice, { jobData } from '../../features/jobDataSlice';
 import styles from '../ListCard/ListCard.module.scss';
 
 interface ListCardProps {
@@ -13,12 +13,16 @@ const ListCard = ({ jobDetails }: ListCardProps) => {
           <Image
             src={jobDetails.logo}
             alt={jobDetails.company}
-            width={50}
-            height={50}
+            width={60}
+            height={60}
           />
         </div>
         <div className={styles.jobContent}>
-          <p>{jobDetails.company}</p>
+          <div className={styles.jobCompanyDetails}>
+            <p>{jobDetails.company}</p>
+            {jobDetails.new && <p className={styles.new}>New!</p>}
+            {jobDetails.featured && <p className={styles.featured}>Featured</p>}
+          </div>
           <p>{jobDetails.position}</p>
           <ul className={styles.jobList}>
             <li>{jobDetails.postedAt}</li>
@@ -32,6 +36,9 @@ const ListCard = ({ jobDetails }: ListCardProps) => {
         <p>{jobDetails.level}</p>
         {jobDetails.languages.map((language, index) => (
           <p key={index}>{language}</p>
+        ))}
+        {jobDetails.tools.map((tool, index) => (
+          <p key={index}>{tool}</p>
         ))}
       </div>
     </div>
