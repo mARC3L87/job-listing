@@ -1,11 +1,13 @@
 import Image from 'next/image';
-import jobDataSlice, { jobData } from '../../features/jobDataSlice';
+import { jobData, filterByLanguage } from '../../features/jobDataSlice';
+import { useAppDispatch } from '../../store/hooks';
 import styles from '../ListCard/ListCard.module.scss';
 
 interface ListCardProps {
   jobDetails: jobData;
 }
 const ListCard = ({ jobDetails }: ListCardProps) => {
+  const dispatch = useAppDispatch();
   return (
     <div className={styles.wrapper}>
       <div className={styles.col1}>
@@ -35,7 +37,14 @@ const ListCard = ({ jobDetails }: ListCardProps) => {
         <p>{jobDetails.role}</p>
         <p>{jobDetails.level}</p>
         {jobDetails.languages.map((language, index) => (
-          <p key={index}>{language}</p>
+          <p
+            onClick={(e: any) =>
+              dispatch(filterByLanguage(e.currentTarget.innerText))
+            }
+            key={index}
+          >
+            {language}
+          </p>
         ))}
         {jobDetails.tools.map((tool, index) => (
           <p key={index}>{tool}</p>
