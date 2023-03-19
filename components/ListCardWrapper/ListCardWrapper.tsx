@@ -3,19 +3,24 @@ import Link from 'next/link';
 import ListCard from '../ListCard/ListCard';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { selectAllJobs } from '../../features/jobDataSlice';
-import { addData } from '../../features/filteredJobSlice';
+import { addData, selectFilterdJobs } from '../../features/filteredJobSlice';
 import styles from '../ListCardWrapper/ListCardWrapper.module.scss';
 
 const ListCardWrapper = () => {
   const allJobs: any = useAppSelector(selectAllJobs);
+  const filteredJobs = useAppSelector(selectFilterdJobs);
   const dispatch = useAppDispatch();
-  console.log(allJobs);
-  useEffect(() => {});
+  console.log(filteredJobs);
+  useEffect(() => {
+    dispatch(addData(allJobs));
+  }, [dispatch, allJobs]);
   return (
     <div className={styles.wrapper}>
-      {allJobs.map((job: any) => (
-        <ListCard key={job.id} jobDetails={job} />
-      ))}
+      {filteredJobs.filter
+        ? filteredJobs.filter.map((job: any) => (
+            <ListCard key={job.id} jobDetails={job} />
+          ))
+        : allJobs.map((job: any) => <ListCard key={job.id} jobDetails={job} />)}
     </div>
   );
 };

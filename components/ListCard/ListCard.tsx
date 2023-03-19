@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import { jobData, filterByLanguage } from '../../features/jobDataSlice';
-import { useAppDispatch } from '../../store/hooks';
+import { jobData } from '../../features/jobDataSlice';
+import { addData, filterByLanguage } from '../../features/filteredJobSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styles from '../ListCard/ListCard.module.scss';
 
 interface ListCardProps {
@@ -8,6 +9,7 @@ interface ListCardProps {
 }
 const ListCard = ({ jobDetails }: ListCardProps) => {
   const dispatch = useAppDispatch();
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.col1}>

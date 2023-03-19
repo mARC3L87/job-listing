@@ -25,16 +25,14 @@ export const jobDataSlice = createSlice({
   name: 'jobs',
   initialState,
   reducers: {
-    filterByLanguage: (state: any, action: PayloadAction<string>) => {
-      return [
-        ...state,
-        ...state
-          .filter((job: any) =>
-            job.languages.includes(action.payload) ? job : null
-          )
-          .map((job: any) => job),
-      ];
-    },
+    // filterByLanguage: (state: any, action: PayloadAction<string>) => {
+    //   return [
+    //     ...state.filter((job: any) =>
+    //       job.languages.includes(action.payload) ? job : null
+    //     ),
+    //     // .map((job: any) => job),
+    //   ];
+    // },
   },
 });
 
