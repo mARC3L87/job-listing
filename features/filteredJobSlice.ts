@@ -5,12 +5,12 @@ import { jobData } from './jobDataSlice';
 
 export interface filterJobs {
   jobsData: jobData[] | any;
-  keyword: string[];
+  keyword: string[] | any;
   filter: jobData[] | null;
 }
 const initialState: filterJobs = {
   jobsData: [],
-  keyword: [],
+  keyword: null,
   filter: null,
 };
 export const filteredJobsSlice = createSlice({
@@ -30,9 +30,23 @@ export const filteredJobsSlice = createSlice({
         ],
       };
     },
+    addKeyword: (state, action: PayloadAction<string>) => {
+      if (state.keyword === null) {
+        return {
+          ...state,
+          keyword: [action.payload],
+        };
+      }
+      return {
+        ...state,
+        keyword: Array.from(new Set([...state.keyword, action.payload])),
+      };
+    },
   },
 });
 
-export const { addData, filterByLanguage } = filteredJobsSlice.actions;
+export const { addData, filterByLanguage, addKeyword } =
+  filteredJobsSlice.actions;
 export const selectFilterdJobs = (state: RootState) => state.filteredJobs;
+export const selectKeywords = (state: RootState) => state.filteredJobs.keyword;
 export default filteredJobsSlice.reducer;

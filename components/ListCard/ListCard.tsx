@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import { jobData } from '../../features/jobDataSlice';
-import { addData, filterByLanguage } from '../../features/filteredJobSlice';
+import {
+  addData,
+  filterByLanguage,
+  addKeyword,
+} from '../../features/filteredJobSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styles from '../ListCard/ListCard.module.scss';
 
@@ -36,7 +40,9 @@ const ListCard = ({ jobDetails }: ListCardProps) => {
         </div>
       </div>
       <div className={styles.col2}>
-        <p>{jobDetails.role}</p>
+        <p onClick={(e) => dispatch(addKeyword(e.currentTarget.innerHTML))}>
+          {jobDetails.role}
+        </p>
         <p>{jobDetails.level}</p>
         {jobDetails.languages.map((language, index) => (
           <p
