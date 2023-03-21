@@ -16,7 +16,7 @@ const ListCardWrapper = () => {
   }, [dispatch, allJobs]);
   return (
     <div className={styles.wrapper}>
-      {filteredJobs.filter
+      {filteredJobs.filter && filteredJobs.filter.length
         ? filteredJobs.filter.map((job: any) => (
             <ListCard key={job.id} jobDetails={job} />
           ))

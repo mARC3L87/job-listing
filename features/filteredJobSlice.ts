@@ -30,6 +30,12 @@ export const filteredJobsSlice = createSlice({
         ],
       };
     },
+    clearFilteredArray: (state) => {
+      return {
+        ...state,
+        filter: [],
+      };
+    },
     addKeyword: (state, action: PayloadAction<string>) => {
       if (state.keyword === null) {
         return {
@@ -42,11 +48,24 @@ export const filteredJobsSlice = createSlice({
         keyword: Array.from(new Set([...state.keyword, action.payload])),
       };
     },
+    removeKeywords: (state, action: PayloadAction<number>) => {
+      return {
+        ...state,
+        keyword: state.keyword.filter(
+          (word: string, index: number) => index !== action.payload
+        ),
+      };
+    },
   },
 });
 
-export const { addData, filterByLanguage, addKeyword } =
-  filteredJobsSlice.actions;
+export const {
+  addData,
+  filterByLanguage,
+  addKeyword,
+  removeKeywords,
+  clearFilteredArray,
+} = filteredJobsSlice.actions;
 export const selectFilterdJobs = (state: RootState) => state.filteredJobs;
 export const selectKeywords = (state: RootState) => state.filteredJobs.keyword;
 export default filteredJobsSlice.reducer;

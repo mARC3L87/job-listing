@@ -43,11 +43,15 @@ const ListCard = ({ jobDetails }: ListCardProps) => {
         <p onClick={(e) => dispatch(addKeyword(e.currentTarget.innerHTML))}>
           {jobDetails.role}
         </p>
-        <p>{jobDetails.level}</p>
+        <p
+          onClick={(e: any) => dispatch(addKeyword(e.currentTarget.innerText))}
+        >
+          {jobDetails.level}
+        </p>
         {jobDetails.languages.map((language, index) => (
           <p
             onClick={(e: any) =>
-              dispatch(filterByLanguage(e.currentTarget.innerText))
+              dispatch(addKeyword(e.currentTarget.innerText))
             }
             key={index}
           >
@@ -55,7 +59,14 @@ const ListCard = ({ jobDetails }: ListCardProps) => {
           </p>
         ))}
         {jobDetails.tools.map((tool, index) => (
-          <p key={index}>{tool}</p>
+          <p
+            onClick={(e: any) =>
+              dispatch(addKeyword(e.currentTarget.innerText))
+            }
+            key={index}
+          >
+            {tool}
+          </p>
         ))}
       </div>
     </div>
