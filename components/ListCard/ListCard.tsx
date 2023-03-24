@@ -1,10 +1,6 @@
 import Image from 'next/image';
 import { jobData } from '../../features/jobDataSlice';
-import {
-  addData,
-  filterByLanguage,
-  addKeyword,
-} from '../../features/filteredJobSlice';
+import { addKeyword } from '../../features/filteredJobSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styles from '../ListCard/ListCard.module.scss';
 

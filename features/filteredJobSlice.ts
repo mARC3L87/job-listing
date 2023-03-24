@@ -20,12 +20,28 @@ export const filteredJobsSlice = createSlice({
     addData: (state, action: PayloadAction<any>) => {
       state.jobsData = action.payload;
     },
-    filterByLanguage: (state, action: PayloadAction<string>) => {
+    filterByLanguage: (state, action: PayloadAction<[]>) => {
+      return {
+        ...state,
+        filter: [
+          ...state.jobsData.filter((job: any) => {
+            const regexp = new RegExp(action.payload.join('|'), 'ig');
+            const arr = Object.values(job).flat().join(',');
+            if (arr.match(regexp)) {
+              return job;
+            } else {
+              return null;
+            }
+          }),
+        ],
+      };
+    },
+    filterByRole: (state, action: PayloadAction<string>) => {
       return {
         ...state,
         filter: [
           ...state.jobsData.filter((job: any) =>
-            job.languages.includes(action.payload) ? job : null
+            job.role.includes(action.payload) ? job : null
           ),
         ],
       };
@@ -65,6 +81,7 @@ export const {
   addKeyword,
   removeKeywords,
   clearFilteredArray,
+  filterByRole,
 } = filteredJobsSlice.actions;
 export const selectFilterdJobs = (state: RootState) => state.filteredJobs;
 export const selectKeywords = (state: RootState) => state.filteredJobs.keyword;

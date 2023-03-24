@@ -10,7 +10,6 @@ const ListCardWrapper = () => {
   const allJobs: any = useAppSelector(selectAllJobs);
   const filteredJobs = useAppSelector(selectFilterdJobs);
   const dispatch = useAppDispatch();
-  console.log(filteredJobs);
   useEffect(() => {
     dispatch(addData(allJobs));
   }, [dispatch, allJobs]);
