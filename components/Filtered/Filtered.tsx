@@ -23,17 +23,21 @@ const Filterd = () => {
     return;
   }
   return (
-    <div className={styles.wrapper}>
-      {selectedKeywords &&
-        selectedKeywords.map((word: string, index: number) => (
-          <div key={index} className={styles.col1}>
-            <div className={styles.filteredDetails}>
-              <p>{word}</p>
-              <span onClick={() => dispatch(removeKeywords(index))}>X</span>
-            </div>
-          </div>
-        ))}
-    </div>
+    <>
+      {
+        <div className={styles.wrapper}>
+          {selectedKeywords &&
+            selectedKeywords.map((word: string, index: number) => (
+              <div key={index} className={styles.col1}>
+                <div className={styles.filteredDetails}>
+                  <p>{word}</p>
+                  <span onClick={() => dispatch(removeKeywords(index))}>X</span>
+                </div>
+              </div>
+            ))}
+        </div>
+      }
+    </>
   );
 };
 
