@@ -8,7 +8,7 @@ import {
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import styles from '../Filtered/Filtered.module.scss';
 
-const Filterd = () => {
+const Filterd: any = () => {
   const selectedKeywords = useAppSelector(selectKeywords);
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -23,21 +23,17 @@ const Filterd = () => {
     return;
   }
   return (
-    <>
-      {
-        <div className={styles.wrapper}>
-          {selectedKeywords &&
-            selectedKeywords.map((word: string, index: number) => (
-              <div key={index} className={styles.col1}>
-                <div className={styles.filteredDetails}>
-                  <p>{word}</p>
-                  <span onClick={() => dispatch(removeKeywords(index))}>X</span>
-                </div>
-              </div>
-            ))}
-        </div>
-      }
-    </>
+    <div className={styles.wrapper}>
+      {selectedKeywords &&
+        selectedKeywords.map((word: string, index: number) => (
+          <div key={index} className={styles.col1}>
+            <div className={styles.filteredDetails}>
+              <p>{word}</p>
+              <span onClick={() => dispatch(removeKeywords(index))}>X</span>
+            </div>
+          </div>
+        ))}
+    </div>
   );
 };
 
